@@ -1,0 +1,33 @@
+debug: yes
+hostname: '127.0.0.1:5000'
+database:
+    connection: 'mysql://root:Jgy123qaz@120.27.135.41:3306/content_manager?charset=utf8'
+security:
+    secret_key: RANDOM STRING
+logging:
+    file: /tmp/content.log
+    level: DEBUG
+redis:
+    host: 127.0.0.1
+    port: 6379
+    password: null
+celery:
+    broker_db: 1
+    result_db: 2
+rpc:
+    amqp_host: 127.0.0.1
+    amqp_port: 5672
+    amqp_user: cloudcare
+    amqp_password: cloudcare_pass
+    amqp_vhost: /cloudcare
+session:
+    type: redis
+    redis_db: 0
+    prefix: 'content_session:'
+    cookie_name: content_session
+    expire: 3600
+storage:
+    news_list: test
+    news_detail: test
+    advertisemnet_list: test
+    advertisement_detail: test

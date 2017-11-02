@@ -1,0 +1,12 @@
+{% extends "detail_base.html" %} {% block info_content %}
+<div class="detail">
+    <p class="title text-center">{{title}}</p>
+    <div class="info">
+        {% if (source_from) %} {% if source_url%}
+        <a href="{{source_url}}" target="_blank" class="source">{{source_from}}</a> {%else%}<span class="source">{{source_from}}</span>{%endif%}{%
+        endif %}
+        <span class="pub-time">{{publish_time}}</span>
+    </div>
+    <div class="content">{{content}}</div>
+</div>
+{% endblock %}

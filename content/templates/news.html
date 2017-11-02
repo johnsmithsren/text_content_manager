@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block content %} {% for attachment in attachments %}
+<li>
+    {%if attachment.icon%}
+    <i style="background-image:url('{{attachment.icon}}');" class="pull-left new-image"></i> {%else%}
+    <i style="background-image:url('images/new-default.jpg');" class="pull-left new-image"></i> {%endif%}
+    <div>
+        <a href="{{ attachment.detail }}" target="_blank" class="title">{{attachment.title}}</a>
+        <p class="summary">{{ attachment.summary }}</p>
+        <div>
+            <a href="{{ attachment.detail }}" target="_blank" class="more pull-right">查看详情</a>
+            <span class="pub-time">{{attachment.time}}</span>
+        </div>
+    </div>
+</li>
+{% endfor %}
+</ul>
+<div class="text-center">
+    <ul id="pagination-demo" class="pagination-sm"></ul>
+</div>
+{%endblock%} {% block script_content %}
+<script type="text/javascript">
+    window.onload = function () {
+        var totalPages = parseInt('{{ total_page }}');
+        var firstPageClick = true;
+        var currentPage = parseInt('{{ current_page }}');
+        $('#pagination-demo').twbsPagination(
+            {
+                startPage: currentPage,
+                first: '首页',
+                prev: '上一页',
+                next: '下一页',
+                last: '末页',
+                totalPages: totalPages,
+                visiblePages: 7,
+                onPageClick: function (event, page) {
+                    if (currentPage != page && !firstPageClick) {
+                        var href = window.location.href.split('/');
+                        var newHref = '';
+                        href.pop();
+                        newHref = href.join('/');
+                        window.location.href = newHref + '/' + page + '.html'
+                    }
+                    firstPageClick = false;
+                }
+            });
+    };
+
+</script>
+{% endblock %}
